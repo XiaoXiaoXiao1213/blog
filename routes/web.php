@@ -43,7 +43,7 @@ Route::get('/','ClassiController@classification');
 //新品  传入的是类型 没传入数据默认第一个
 Route::get('/','ClassiController@newGoods');
 
-//首页最下面那个 传入1 2 3 4
+//首页最下面那个   传入1 2 3 4
 Route::get('/','ClassiController@thech');
 
 
