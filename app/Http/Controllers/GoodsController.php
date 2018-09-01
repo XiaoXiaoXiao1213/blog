@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class GoodsController extends Controller
 {
-    //首页分类中查找商品
+    //首页分类中查找商品 
     public function goodsTable(Request $request)
     {
         $mm = $request -> input('mclassi','');
