@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Goods;
 
 class GoodsController extends Controller
 {
@@ -34,7 +33,7 @@ class GoodsController extends Controller
     public function goodsdetail(Request $request)
     {
         $info = $request -> input('Go_name');
-        $good = Goods_details::where('Go_name',$info)->orderBy('key','desc')->get('first','second','third','fourth','fifth');
+        $good = Goods_details::where('Go_name',$info)->orderBy('key','desc')->get(['first','second','third','fourth','fifth']);
         $num = count($good);
         if($num){
             return $this -> returnMsg('5005','no found');
@@ -55,7 +54,7 @@ class GoodsController extends Controller
     public function goodsmore(Request $request)
     {
         $info = $request -> input('bclassi','');
-        $good = Goods::where('bclassi',$info)->get('Go_name','pic1');
+        $good = Goods::where('bclassi',$info)->get(['Go_name','pic1']);
         $num = count($good);
         if(!$num){
             return $this->returnMsg('5005','no found');
@@ -63,7 +62,7 @@ class GoodsController extends Controller
         if($num<=30){
             return $this->returnMsg('200','ok',$good);
         }else{
-            $good = Goods::where('bclassi',$info)->limit(30)->get('Go_name','pic1');
+            $good = Goods::where('bclassi',$info)->limit(30)->get(['Go_name','pic1']);
             return $this->returnMsg('200','ok'.$good);
         }
     }
@@ -85,7 +84,7 @@ class GoodsController extends Controller
                              ->orwhere('mclassi','like','%'.$name.'%')
                              ->orwhere('bclassi','like','%',$name.'%')
                              ->orwhere('sclassi','like','%'.$name.'%')
-                             ->skip(($page-1)*30)->limit(30)->get('Go_name','pic1');                  
+                             ->skip(($page-1)*30)->limit(30)->get(['Go_name','pic1']);                  
             
             $info1 = Goods::where('Go_name','like','%'.$name.'%')
                            ->orwhere('brand','like','%'.$name.'%')
@@ -111,7 +110,7 @@ class GoodsController extends Controller
                              ->orwhere(['mclassi','like','%'.$name.'%'],['brand',$brand])
                              ->orwhere(['bclassi','like','%',$name.'%'],['brand',$brand])
                              ->orwhere(['sclassi','like','%'.$name.'%'],['brand',$brand])
-                             ->skip(($page-1)*30)->limit(30)->get('Go_name','pic1');   
+                             ->skip(($page-1)*30)->limit(30)->get(['Go_name','pic1']);   
             
             $info1 = $brand;
 
@@ -128,7 +127,7 @@ class GoodsController extends Controller
         if(!$brand&&$type){
             $return = Goods::where(['Go_name','like','%'.$name.'%'],['sclassi',$type])
                              ->orwhere(['brand','like','%'.$name.'%'],['sclassi',$type])
-                             ->skip(($page-1)*30)->limit(30)->get('Go_name','pic1');   
+                             ->skip(($page-1)*30)->limit(30)->get(['Go_name','pic1']);   
         
             $info1 = Goods::where(['Go_name','like','%'.$name.'%'],['sclassi',$type])
                              ->orwhere(['brand','like','%'.$name.'%'],['sclassi',$type])
@@ -143,7 +142,7 @@ class GoodsController extends Controller
         }
         if($brand&&$type){
             $return = Goods::where(['Go_name','like','%'.$name.'%'],['sclassi',$type],['brand',$brand])
-                             ->skip(($page-1)*30)->limit(30)->get('Go_name','pic1');
+                             ->skip(($page-1)*30)->limit(30)->get(['Go_name','pic1']);
             $info1 = $brand;
             $info2 = $type;
         
@@ -167,7 +166,7 @@ class GoodsController extends Controller
         }
         if(!$band&&!$type){
             $return[] = Goods::where('Go_name','like','%'.$name.'%')
-                             ->skip(($page-1)*30)->limit(30)->get('Go_name','pic1');                  
+                             ->skip(($page-1)*30)->limit(30)->get(['Go_name','pic1']);                  
             
             $info1 = Goods::where('Go_name','like','%'.$name.'%')
                            ->get('brand');
@@ -182,7 +181,7 @@ class GoodsController extends Controller
         }
         if($brand&&!$type){
             $return = Goods::where(['Go_name','like','%'.$name.'%'],['brand',$brand])
-                             ->skip(($page-1)*30)->limit(30)->get('Go_name','pic1');   
+                             ->skip(($page-1)*30)->limit(30)->get(['Go_name','pic1']);   
             
             $info1 = $brand;
 
@@ -195,7 +194,7 @@ class GoodsController extends Controller
         }
         if(!$brand&&$type){
             $return = Goods::where(['Go_name','like','%'.$name.'%'],['sclassi',$type])
-                             ->skip(($page-1)*30)->limit(30)->get('Go_name','pic1');   
+                             ->skip(($page-1)*30)->limit(30)->get(['Go_name','pic1']);   
         
             $info1 = Goods::where(['Go_name','like','%'.$name.'%'],['sclassi',$type])
                              ->get('brand');
@@ -209,7 +208,7 @@ class GoodsController extends Controller
         }
         if($brand&&$type){
             $return = Goods::where(['Go_name','like','%'.$name.'%'],['sclassi',$type],['brand',$brand])
-                             ->skip(($page-1)*30)->limit(30)->get('Go_name','pic1');
+                             ->skip(($page-1)*30)->limit(30)->get(['Go_name','pic1']);
             $info1 = $brand;
             $info2 = $type;
         }

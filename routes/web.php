@@ -12,7 +12,9 @@
 */
 
 
-
+Route::get('/',function() {
+    return view('welcome');
+});
 
 //用户信息查询  数组
 Route::get('/userinform','UserController@userinform');
@@ -22,7 +24,7 @@ Route::post('/tecconsulting','UserController@Tec_Consulting');
 Route::post('/appregistrations','UserController@app_Registrations');
 //公告信息
 //首页（传入的数据非0）
-Route::get('/','UserController@notices');
+Route::get('/u','UserController@notices');
 //公告信息
 //非首页（传入的数据为0）
 Route::get('/notices','UserController@notices');
@@ -32,19 +34,19 @@ Route::get('/notices/inform','UserController@notice');
 
 
 //用户登录
-Route::get('/','UserController@login');
+Route::get('/u','UserController@login');
 //联系我们
 Route::post('/connect','UserController@connect');
 
 
 //首页分类  二维数组  大分类是键名
-Route::get('/','ClassiController@classification');
+Route::get('/u','ClassiController@classification');
 
 //新品  传入的是类型 没传入数据默认第一个
-Route::get('/','ClassiController@newGoods');
+Route::get('/u','ClassiController@newGoods');
 
 //首页最下面那个   传入1 2 3 4
-Route::get('/','ClassiController@thech');
+Route::get('/u','ClassiController@thech');
 
 
 //首页那个分类点击进去  传入的是点击的那个

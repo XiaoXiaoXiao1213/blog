@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Goods;
-
+use App\cuttingedge;
+use App\semmar;
 class ClassiController extends baseController
 {
     //首页分类
@@ -62,17 +63,17 @@ class ClassiController extends baseController
     {
         $info = $request-> input('num',1);
         if($info==1){
-            $data = cuttingedges::limit(4)->orderBy('id','desc')->get('pic','inform','mv');
+            $data = cuttingedge::limit(4)->orderBy('id','desc')->get(['pic','inform','mv']);
         }else if($info==2){
-            $data = semmars::limit(4)->orderBy('id','desc')->get('pic','title','inform','mv');
+            $data = semmar::limit(4)->orderBy('id','desc')->get(['pic','title','inform','mv']);
         }else if($info==3){
-            $data = eatmedicines::limit(4)->orderBy('id','desc')->get('pic','title','inform','file');
+            $data = eatmedicine::limit(4)->orderBy('id','desc')->get(['pic','title','inform','file']);
         }else{
             $data = [];
         }
 
         if($data){
-            return $this->returnMsg('200','ok',$dara);
+            return $this->returnMsg('200','ok',$data);
         }else{
             return $this->returnMsg('5005','fail');
         }
