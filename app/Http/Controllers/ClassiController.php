@@ -61,7 +61,7 @@ class ClassiController extends baseController
     //尖端科技
     public function thech(Request $request)
     {
-        $info = $request-> input('num',1);
+        $info = $request->input('num',1);
         if($info==1){
             $data = cuttingedge::limit(4)->orderBy('id','desc')->get(['pic','inform','mv']);
         }else if($info==2){

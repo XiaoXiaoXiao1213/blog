@@ -9,8 +9,8 @@ class GoodsController extends Controller
     //首页分类中查找商品 
     public function goodsTable(Request $request)
     {
-        $mm = $request -> input('mclassi','');
-        $ss = $request -> input('sclassi','');
+        $mm = $request->input('mclassi','');
+        $ss = $request->input('sclassi','');
         if($mm){
             $info = Goods::where(['mclassi',$mm])->get();
         return $this->returnMsg('200','ok',$info);
@@ -24,7 +24,7 @@ class GoodsController extends Controller
     //商品页
     public function goods(Request $request)
     {
-        $info = $request -> input('Go_name');
+        $info = $request->input('Go_name');
         $goods = Goods::where('Go_name',$info)->get();
         return $this->returnMsg('200','ok',$info);
     }
@@ -32,13 +32,13 @@ class GoodsController extends Controller
     //商品详情
     public function goodsdetail(Request $request)
     {
-        $info = $request -> input('Go_name');
+        $info = $request->input('Go_name');
         $good = Goods_details::where('Go_name',$info)->orderBy('key','desc')->get(['first','second','third','fourth','fifth']);
         $num = count($good);
         if($num){
-            return $this -> returnMsg('5005','no found');
+            return $this->returnMsg('5005','no found');
         }else{  
-            foreach($good as $key =>$a)
+            foreach($good as $key => $a)
               {
                 foreach($a as $k => $b)
                 if(empty($b))
@@ -46,14 +46,14 @@ class GoodsController extends Controller
                   unset($a[$k]);
                 }
               }
-            return $this -> returnMsg('200','ok',$good);                 
+            return $this->returnMsg('200','ok',$good);                 
         }
     }
 
     //更多产品
     public function goodsmore(Request $request)
     {
-        $info = $request -> input('bclassi','');
+        $info = $request->input('bclassi','');
         $good = Goods::where('bclassi',$info)->get(['Go_name','pic1']);
         $num = count($good);
         if(!$num){

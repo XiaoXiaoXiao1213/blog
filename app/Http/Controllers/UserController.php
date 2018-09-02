@@ -92,7 +92,7 @@ class UserController extends baseController
     //首页（传入的数据非0）和非首页
         public function notices(Request $request)
         {
-            $num = $request -> input('$num',0);
+            $num = $request->input('$num',0);
             if($num){
                 $info = notice::where('id','>',0)->limit(4)->get();
             }else{
@@ -105,20 +105,20 @@ class UserController extends baseController
         //公告内容
         public function notice(Request $request)
         {
-            $name = $request ->input('name','');
+            $name = $request->input('name','');
             $file = notice::where('noticeName',$name)->get('noticeFile');
             if($file){
-                return $this -> returnMsg('200','ok',$file);
+                return $this->returnMsg('200','ok',$file);
             }else{
-                return $this -> returnMsg('5005','no found');
+                return $this->returnMsg('5005','no found');
             }
         }
 
         //用户登录
         public function login(Request $request)
         {
-            $yhname = $request -> input('yhname');
-            $password = $request -> input('password');
+            $yhname = $request->input('yhname');
+            $password = $request->input('password');
             $user = User::where([
                     ['yhname',$yhname],
                     ['password',sha1($password)]
@@ -137,7 +137,7 @@ class UserController extends baseController
         {
             $name = $request->input('name','');
             $email = $request->input('email','');
-            $say = $request -> input('say','');
+            $say = $request->input('say','');
             
             $data = [
                 'name' => $name,
@@ -151,6 +151,9 @@ class UserController extends baseController
                 return $this->returnMsg('5005','fail');
             }
         }
+
+        
+        
     }
 
 
