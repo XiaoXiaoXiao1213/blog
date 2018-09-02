@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Goods;
 
 class ClassiController extends baseController
 {
@@ -49,7 +50,7 @@ class ClassiController extends baseController
         if($num<=7){
             $check = $goods;
         }else{
-            $check = goods::where('bclassi',(int)$type)->limit(7)->orderBy('id','desc')->get();
+            $check = Goods::where('bclassi',(int)$type)->limit(7)->orderBy('id','desc')->get();
         }
 
         return $this->returnMsg('200','ok',$check);

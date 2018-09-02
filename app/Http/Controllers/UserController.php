@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Technical_consulting;
+use App\notice;
+use App\Application_registration;
+use App\connection;
 use Hash;
 
 class UserController extends baseController
@@ -13,7 +17,7 @@ class UserController extends baseController
     public function userinform(Request $request)
     {
         $id = $request->input('id','');
-        $info = users::where(['id',$id])->get('yhname','xname','phone','email');
+        $info = User::where(['id',$id])->get('yhname','xname','phone','email');
         if(!count($info)){
             return $this->returnMsg('5005','no found');
         }else{
@@ -43,7 +47,7 @@ class UserController extends baseController
             'contect' => $Contect,
             'email2' => $Email2
         ];
-        $check = technical_consulting::create($data);
+        $check = Technical_consulting::create($data);
         if($check){
             return $this->returnMsg('200','ok');
         } else {
@@ -77,7 +81,7 @@ class UserController extends baseController
             'Bu_nature' => $data9,
             'Ca_composition' => $data10
         ];
-        $check = application_registrations::create($data);
+        $check = Application_registration::create($data);
         if($check){
             return $this->returnMsg('200','ok');
         } else {
@@ -90,9 +94,9 @@ class UserController extends baseController
         {
             $num = $request -> input('$num',0);
             if($num){
-                $info = notices::where('id','>',0)->limit(4)->get();
+                $info = notice::where('id','>',0)->limit(4)->get();
             }else{
-                $info = notices::all();
+                $info = notice::all();
             }
             
             return $this->returnMsg('200','ok',$info);
@@ -102,7 +106,7 @@ class UserController extends baseController
         public function notice(Request $request)
         {
             $name = $request ->input('name','');
-            $file = notices::where('noticeName',$name)->get('noticeFile');
+            $file = notice::where('noticeName',$name)->get('noticeFile');
             if($file){
                 return $this -> returnMsg('200','ok',$file);
             }else{
@@ -115,7 +119,7 @@ class UserController extends baseController
         {
             $yhname = $request -> input('yhname');
             $password = $request -> input('password');
-            $user = users::where([
+            $user = User::where([
                     ['yhname',$yhname],
                     ['password',sha1($password)]
             ])->first();
