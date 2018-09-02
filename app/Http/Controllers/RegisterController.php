@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class RegisterController extends baseController
 {
@@ -11,7 +12,7 @@ class RegisterController extends baseController
     /**
      * 用户注册
      */
-    public function create(Request  $request)
+    public function create(Request $request)
     {
         //表单验证
         $this->validate($request,[
@@ -47,12 +48,12 @@ class RegisterController extends baseController
             'password' => $password
         ];
 
-        $check = users::create($data);
+        $check = User::create($data);
    
         if($check) {
             return $this->returnMsg('200','ok');
         } else {
-            return $this->returnMsg('5000','create failed');
+            return $this->returnMsg('5005','create failed');
         }
     }
 
