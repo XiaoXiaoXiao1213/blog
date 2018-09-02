@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Goods;
+use App\Goods_details;
 
-class GoodsController extends Controller
+class GoodsController extends baseController
 {
     //首页分类中查找商品 
     public function goodsTable(Request $request)

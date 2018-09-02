@@ -6,27 +6,29 @@ use Illuminate\Http\Request;
 use App\Goods;
 use App\cuttingedge;
 use App\semmar;
+use App\bclassification;
+use App\sclassification;
 class ClassiController extends baseController
 {
     //首页分类
     public function classification(Request $request)
     {
-        $info1 = bclassifications::get('firstb');
-        $info2 = bclassifications::get('secondb');
-        $info3 = bclassifications::get('thirdb');
-        $info4 = bclassifications::get('fourthb');
-        $info5 = bclassifications::get('fifthb');
-        $info6 = bclassifications::get('sixthb');
-        $info7 = bclassifications::get('seventhb');
-        $info8 = bclassifications::get('eigthb');
-        $info9 = bclassifications::get('ninthb');
-        $info10 = bclassifications::get('tenthb');
+        $info1 = bclassification::get('firstb');
+        $info2 = bclassification::get('secondb');
+        $info3 = bclassification::get('thirdb');
+        $info4 = bclassification::get('fourthb');
+        $info5 = bclassification::get('fifthb');
+        $info6 = bclassification::get('sixthb');
+        $info7 = bclassification::get('seventhb');
+        $info8 = bclassification::get('eigthb');
+        $info9 = bclassification::get('ninthb');
+        $info10 = bclassification::get('tenthb');
         $array2 = [];
         for($numm = 1;$numm<11;$numm++){
             foreach($info.$numm as $a){                    
                 $array1 = [];
                 $b = 1;
-                $infoo.$b.$numm = sclassifications::where(['mclassic',$a],
+                $infoo.$b.$numm = sclassification::where(['mclassic',$a],
                                                           ['blassid',$info.$numm])->get('name');
                 
                 $array1[$a] = $infoo.$b.$numm;
@@ -43,7 +45,7 @@ class ClassiController extends baseController
     public function newGoods(Request $request)
     {
         $type = $request->input('type');
-        $goods = goods::where('bclassi',(int)$type)->get();
+        $goods = Goods::where('bclassi',(int)$type)->get();
         $num = count($goods);
         if(!$num){
             return $this->returnMsg('500','fail');
