@@ -34,10 +34,13 @@ class GoodsController extends baseController
     //商品详情
     public function goodsdetail(Request $request)
     {
-        $info = $request->input('Go_name');
-        $good = Goods_details::where('Go_name',$info)->orderBy('key','desc')->get(['first','second','third','fourth','fifth']);
+        $info = $request->input('Go_name','');
+        if($info == null){
+            return $this->returnMsg('5005','no found');
+        }
+        $good = Goods_details::where('Go_name',(string)$info)->orderBy('key','desc')->get(['first','second','third','fourth','fifth']);
         $num = count($good);
-        if($num){
+        if(!$num){
             return $this->returnMsg('5005','no found');
         }else{  
             foreach($good as $key => $a)
@@ -56,6 +59,9 @@ class GoodsController extends baseController
     public function goodsmore(Request $request)
     {
         $info = $request->input('bclassi','');
+        if($info==null){
+            return $this->returnMsg('5005','no found');
+        }
         $good = Goods::where('bclassi',$info)->get(['Go_name','pic1']);
         $num = count($good);
         if(!$num){

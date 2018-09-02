@@ -11,25 +11,25 @@ use App\sclassification;
 class ClassiController extends baseController
 {
     //首页分类
-    public function classification(Request $request)
+    public function classification( )
     {
-        $info1 = bclassification::get('firstb');
-        $info2 = bclassification::get('secondb');
-        $info3 = bclassification::get('thirdb');
-        $info4 = bclassification::get('fourthb');
-        $info5 = bclassification::get('fifthb');
-        $info6 = bclassification::get('sixthb');
-        $info7 = bclassification::get('seventhb');
-        $info8 = bclassification::get('eigthb');
-        $info9 = bclassification::get('ninthb');
-        $info10 = bclassification::get('tenthb');
+        $info1 = bclassification::where('id','>','0')->get(['firstb']);
+        $info2 = bclassification::get(['secondb']);
+        $info3 = bclassification::get(['thirdb']);
+        $info4 = bclassification::get(['fourthb']);
+        $info5 = bclassification::get(['fifthb']);
+        $info6 = bclassification::get(['sixthb']);
+        $info7 = bclassification::get(['seventhb']);
+        $info8 = bclassification::get(['eigthb']);
+        $info9 = bclassification::get(['ninthb']);
+        $info10 = bclassification::get(['tenthb']);
         $array2 = [];
         for($numm = 1;$numm<11;$numm++){
             foreach($info.$numm as $a){                    
                 $array1 = [];
                 $b = 1;
                 $infoo.$b.$numm = sclassification::where(['mclassic',$a],
-                                                          ['blassid',$info.$numm])->get('name');
+                                                          ['blassid',$info.$numm])->get(['name']);
                 
                 $array1[$a] = $infoo.$b.$numm;
                  
@@ -44,8 +44,11 @@ class ClassiController extends baseController
     //新品
     public function newGoods(Request $request)
     {
-        $type = $request->input('type');
-        $goods = Goods::where('bclassi',(int)$type)->get();
+        $type = $request->input('type','');
+        if($type==null){
+            return $this->returnMsg('500','fail');
+        }
+        $goods = Goods::where('bclassi',$type)->get();
         $num = count($goods);
         if(!$num){
             return $this->returnMsg('500','fail');
@@ -53,7 +56,7 @@ class ClassiController extends baseController
         if($num<=7){
             $check = $goods;
         }else{
-            $check = Goods::where('bclassi',(int)$type)->limit(7)->orderBy('id','desc')->get();
+            $check = Goods::where('bclassi',$type)->limit(7)->orderBy('id','desc')->get();
         }
 
         return $this->returnMsg('200','ok',$check);

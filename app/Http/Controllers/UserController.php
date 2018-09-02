@@ -16,8 +16,8 @@ class UserController extends baseController
     //用户信息查询
     public function userinform(Request $request)
     {
-        $id = $request->input('id','');
-        $info = User::where(['id',$id])->get(['yhname','xname','phone','email']);
+        $id = $request->input('id','1');
+        $info = User::where('id',$id)->get(['yhname','xname','phone','email']);
         if(!count($info)){
             return $this->returnMsg('5005','no found');
         }else{
@@ -106,7 +106,7 @@ class UserController extends baseController
         public function notice(Request $request)
         {
             $name = $request->input('name','');
-            $file = notice::where('noticeName',$name)->get('noticeFile');
+            $file = notice::where('noticeName',$name)->get(['noticeFile']);
             if($file){
                 return $this->returnMsg('200','ok',$file);
             }else{
