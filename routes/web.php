@@ -64,4 +64,4 @@ Route::get('/allsearch','GoodsController@allsearch');
 Route::get('/namesearch','GoodsController@namesearch');
 
 //注册
-Route::posi('/register','RegisterController@create');
+Route::post('/register','RegisterController@create');
