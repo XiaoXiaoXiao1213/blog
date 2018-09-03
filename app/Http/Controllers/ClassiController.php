@@ -13,30 +13,41 @@ class ClassiController extends baseController
     //首页分类
     public function classification( )
     {
-        $info1 = bclassification::where('id','>','0')->get(['firstb']);
-        $info2 = bclassification::get(['secondb']);
-        $info3 = bclassification::get(['thirdb']);
-        $info4 = bclassification::get(['fourthb']);
-        $info5 = bclassification::get(['fifthb']);
-        $info6 = bclassification::get(['sixthb']);
-        $info7 = bclassification::get(['seventhb']);
-        $info8 = bclassification::get(['eigthb']);
-        $info9 = bclassification::get(['ninthb']);
-        $info10 = bclassification::get(['tenthb']);
-        $array2 = [];
-        for($numm = 1;$numm<11;$numm++){
-            foreach($info.$numm as $a){                    
-                $array1 = [];
-                $b = 1;
-                $infoo.$b.$numm = sclassification::where(['mclassic',$a],
-                                                          ['blassid',$info.$numm])->get(['name']);
-                
-                $array1[$a] = $infoo.$b.$numm;
-                 
+        $info1 = bclassification::get(['first']);
+        $info2 = bclassification::get(['second']);
+        $info3 = bclassification::get(['third']);
+        $info4 = bclassification::get(['fourth']);
+        $info5 = bclassification::get(['fifth']);
+        $info6 = bclassification::get(['sixth']);
+        $info7 = bclassification::get(['seventh']);
+        $info8 = bclassification::get(['eigth']);
+        $info9 = bclassification::get(['ninth']);
+        $info10 = bclassification::get(['tenth']);
+        $info = ['0' => $info1,
+                 '1' => $info2,
+                 '2' => $info3,
+                 '3' => $info4,
+                 '4' => $info5,
+                 '5' => $info6,
+                 '6' => $info7,
+                 '7' => $info8,
+                 '8' => $info9,
+                 '9' => $info10
+                ];
+        
+        $array1 = array();
+        $array = array(array());
+        for($num = 0;$num<10;$num++){
+            foreach($info[$num] as $a){                    
+                $array1 = array();
+            
+                $array1[$a] = sclassification::where(['mclassic',$a],
+                                                         ['blassic',$info[$num]])->get(['name']);          
             }
-            $array2['firstb'] = $array1;
+            
+            array_push($array,$array1);
         }
-        return $this->returnMsg('200','0k',$array2);
+        return $this->returnMsg('200','0k',$array);
     }
 
 
