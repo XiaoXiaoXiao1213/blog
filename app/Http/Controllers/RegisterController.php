@@ -45,7 +45,7 @@ class RegisterController extends baseController
             'xname' => $xname,
             'phone' => $phone,
             'email' => $email,
-            'password' => $password
+            'password' => $passwordd
         ];
 
         $check = User::create($data);
@@ -53,8 +53,9 @@ class RegisterController extends baseController
         if($check) {
             return $this->returnMsg('200','ok');
         } else {
-            return $this->returnMsg('5005','create failed');
+            return $this->returnMsg('500','create failed');
         }
+
     }
 
     

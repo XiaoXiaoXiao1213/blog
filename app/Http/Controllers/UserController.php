@@ -89,16 +89,11 @@ class UserController extends baseController
         }
     }
     //公告信息
-    //首页（传入的数据非0）和非首页
+
         public function notices(Request $request)
         {
-            $num = $request->input('$num',0);
-            if($num){
-                $info = notice::where('id','>',0)->limit(4)->get();
-            }else{
-                $info = notice::all();
-            }
             
+                $info = notice::all();            
             return $this->returnMsg('200','ok',$info);
         }
 
@@ -127,7 +122,7 @@ class UserController extends baseController
             if($user){
                 return $this->returnMsg('200','ok',$user);
             }else{
-                return $this->returnMsg('500','no user matched', []);
+                return $this->returnMsg('500','no user matched');
             }
         }
         
