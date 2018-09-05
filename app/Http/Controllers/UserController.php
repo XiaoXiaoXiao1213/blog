@@ -93,7 +93,7 @@ class UserController extends baseController
         public function notices(Request $request)
         {
             
-                $info = notice::all();            
+            $info = notice::get('created_at','noticeName');            
             return $this->returnMsg('200','ok',$info);
         }
 
