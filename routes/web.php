@@ -34,7 +34,7 @@ Route::get('/notices/inform','UserController@notice');
 
 
 //用户登录
-Route::get('/login','UserController@login');
+Route::post('/login','UserController@login');
 //联系我们
 Route::post('/connect','UserController@connect');
 

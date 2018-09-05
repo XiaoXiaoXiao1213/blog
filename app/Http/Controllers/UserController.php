@@ -117,8 +117,8 @@ class UserController extends baseController
         //用户登录
         public function login(Request $request)
         {
-            $yhname = $request->input('yhname');
-            $password = $request->input('password');
+            $yhname = $request->get('yhname');
+            $password = $request->get('password');
             $user = User::where([
                     ['yhname',$yhname],
                     ['password',sha1($password)]
