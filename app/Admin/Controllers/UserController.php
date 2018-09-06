@@ -24,8 +24,8 @@ class UserController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('用户');
+            $content->description(' ');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class UserController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('编辑');
+            $content->description('');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class UserController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('创建');
+            $content->description('');
 
             $content->body($this->form());
         });
@@ -74,9 +74,14 @@ class UserController extends Controller
         return Admin::grid(User::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-
+            $grid->yhname('用户名');
+            $grid->xname('姓名');
+            $grid->phone('电话号码');
+            $grid->email('邮箱');
+            $grid->password('密码');
             $grid->created_at();
             $grid->updated_at();
+        
         });
     }
 

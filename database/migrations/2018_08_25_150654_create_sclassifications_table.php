@@ -17,7 +17,6 @@ class CreateSclassificationsTable extends Migration
             $table->increments('id');
             $table->string('bclassi');
             $table->string('mclassic');
-            $table->integer('classid');
             $table->string('name');
             $table->timestamps();
         });

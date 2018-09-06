@@ -35,11 +35,11 @@ class RegisterController extends baseController
     
 
         //数据插入
-        $yhname = $request->input('username');
-        $xname = $request->input('user');
-        $phone = $request->input('phone');
-        $email = $request->input('Email');
-        $password = Hash::make($request->input('psw'));
+        $yhname = $request->get('username');
+        $xname = $request->get('user');
+        $phone = $request->get('phone');
+        $email = $request->get('Email');
+        $password = Hash::make($request->get('psw'));
         $data = [
             'yhname' => $yhname,
             'xname' => $xname,

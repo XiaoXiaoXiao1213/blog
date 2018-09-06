@@ -10,7 +10,6 @@ class sclassification extends Model
        
     'bclassi',
     'mclassic',
-    'classid',
     'name'
     ];
 }

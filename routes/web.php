@@ -23,11 +23,8 @@ Route::post('/tecconsulting','UserController@Tec_Consulting');
 //合作登记申请
 Route::post('/appregistrations','UserController@app_Registrations');
 //公告信息
-//首页（传入的数据非0）
 Route::get('/firstnotices','UserController@notices');
-//公告信息
-//非首页（传入的数据为0）
-Route::get('/notices','UserController@notices');
+
 
 //公告文件  （传入的是公告标题）
 Route::get('/notices/inform','UserController@notice');
