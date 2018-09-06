@@ -18,7 +18,7 @@ class CreateApplicationRegistrationsTable extends Migration
             $table->string('coo_name',45)->comment('公司名称');
             $table->string('coo_address',60)->comment('公司地址');
             $table->string('user_name',12)->comment('联系人姓名');
-            $table->bigInteger('user_phone')->comment('联系人电话号码');
+            $table->string('user_phone')->comment('联系人电话号码');
             $table->string('Co_categories')->comment('商品类别');
             $table->string('Co_profile',400)->comment('商品简介');
             $table->string('Co_file',60)->comment('文件路径');
