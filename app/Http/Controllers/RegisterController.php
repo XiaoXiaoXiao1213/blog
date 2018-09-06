@@ -25,7 +25,7 @@ class RegisterController extends baseController
             'username.required' => '用户名不能为空',
             'user.required' => '联系人不能为空',
             'phone.required' => '电话号码不能为空',
-            'phone.regex' => '电话号码格式不正确',
+        
             'Email.required' =>'邮箱不能为空',
             'Email.email' => '邮箱格式错误',
             'psw.required' => '密码不能为空',
