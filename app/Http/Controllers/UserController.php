@@ -130,9 +130,9 @@ class UserController extends baseController
         //联系我们
         public function connection(Request $request)
         {
-            $name = $request->input('name','');
-            $email = $request->input('email','');
-            $say = $request->input('say','');
+            $name = $request->get('name','');
+            $email = $request->get('email','');
+            $say = $request->get('say','');
             
             $data = [
                 'name' => $name,
