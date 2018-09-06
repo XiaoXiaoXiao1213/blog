@@ -18,7 +18,7 @@ class RegisterController extends baseController
         $this->validate($request,[
             'username' => 'required',
             'user' => 'required',
-            'phone' => 'required|regex:/^1(3|4|5|7|8)\d{9}$/',
+            'phone' => 'required',
             'Email' => 'required|email',
             'psw' => 'required|regex:/\w{6,12}/|same:pswagain'
         ],[
