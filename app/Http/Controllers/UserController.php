@@ -27,14 +27,14 @@ class UserController extends baseController
     }
     //技术咨询
     public function Tec_Consulting(Request $request){
-        $CooName = $request->input('Coo_name','');
-        $CooAddress = $request->input('Coo_address','');
-        $UserName = $request->input('user_name','');
-        $UserPhone = $request->input('user_phone','');
-        $Email = $request->input('email','');
-        $GoodsName = $requset->input('Goods_name','');
-        $Contect = $request->input('contect','');
-        $Email2 = $request->input('email2','');
+        $CooName = $request->get('Coo_name','');
+        $CooAddress = $request->get('Coo_address','');
+        $UserName = $request->get('user_name','');
+        $UserPhone = $request->get('user_phone','');
+        $Email = $request->get('email','');
+        $GoodsName = $requset->get('Goods_name','');
+        $Contect = $request->get('contect','');
+        $Email2 = $request->get('email2','');
     
     
         $data = [
@@ -56,17 +56,17 @@ class UserController extends baseController
     }
     //合作登记申请
     public function app_Registrations(Request $requset) {
-        $data1 = $request->input('coo_name','');
-        $data2 = $requset->input('coo_address','');
-        $data3 = $requset->input('user_name','');
-        $data4 = $requset->input('user_phone','');
-        $data5 = $requset->input('Co_categories','');
-        $data6 = $requset->input('Co_profile','');
+        $data1 = $request->get('coo_name','');
+        $data2 = $requset->get('coo_address','');
+        $data3 = $requset->get('user_name','');
+        $data4 = $requset->get('user_phone','');
+        $data5 = $requset->get('Co_categories','');
+        $data6 = $requset->get('Co_profile','');
         //文件
-        $data7 = $requset->input('Co_file','');
-        $data8 = $requset->input('Bu_content','');
-        $data9 = $requset->input('Bu_nature','');
-        $data10 = $requset->input('Ca_composition','');
+        $data7 = $requset->get('Co_file','');
+        $data8 = $requset->get('Bu_content','');
+        $data9 = $requset->get('Bu_nature','');
+        $data10 = $requset->get('Ca_composition','');
         
         //插入数据表
         $data = [
