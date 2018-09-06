@@ -24,8 +24,8 @@ class Application_registrationController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('合作登记申请');
+            $content->description('');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class Application_registrationController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('编辑');
+            $content->description('');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class Application_registrationController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('创建');
+            $content->description('');
 
             $content->body($this->form());
         });
@@ -74,6 +74,12 @@ class Application_registrationController extends Controller
         return Admin::grid(Application_registration::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->coo_name('公司名称');
+            $grid->coo_address('公司地址');
+            $grid->user_name('联系人姓名');
+            $grid->user_phone('联系人电话号码');
+            $grid->Co_categoriers('商品类别');
+            $grid->Co_profile('商品简介');
 
             $grid->created_at();
             $grid->updated_at();
